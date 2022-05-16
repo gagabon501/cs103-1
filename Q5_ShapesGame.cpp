@@ -18,15 +18,47 @@ using namespace std;
 void drawSquare();
 void drawTriangle();
 void drawRectangle(int height, int width);
-void showWelcomeMsg();
 void showOptions();
 void pickQuestion(int questionNumber);
+void Clear();
+void playGame(int *ptrTotalScore);
+void showFinalScore(int totalScore);
+int calculateScore(int totalScore);
+int showMenu(int totalScore);
 string correctAnswer(int questionNumber);
 
 int main()
 {
 
     // variable definitions
+    int menuChoice = 0;
+    int totalScore = 0;
+    int *ptrTotalScore = &totalScore;
+
+    Clear(); // clear the screen
+    while (menuChoice != 3)
+    {
+        menuChoice = showMenu(totalScore);
+        switch (menuChoice)
+        {
+        case 1:
+            playGame(ptrTotalScore);
+            break;
+        case 2:
+            showFinalScore(totalScore);
+            break;
+        }
+    }
+
+    return 0;
+}
+void showFinalScore(int totalScore)
+{
+    cout << "\nFinal score: " << totalScore << "\n";
+}
+
+void playGame(int *ptrTotalScore)
+{
     string choice = "";
     string rightAnswer = "";
     bool answeredCorrectly = false;
@@ -38,7 +70,6 @@ int main()
 
     rightAnswer = correctAnswer(randomNum); // get the correct answer to the question as per the random number
 
-    showWelcomeMsg();
     cout << "What is this shape?\n\n";
     pickQuestion(randomNum);
     cout << "\n";
@@ -63,13 +94,18 @@ int main()
     if (answeredCorrectly)
     {
         cout << "\nYour guess is correct\n";
+        *ptrTotalScore = calculateScore(*ptrTotalScore);
     }
     else
     {
         cout << "\nYour guess is wrong\n";
     }
+}
 
-    return 0;
+int calculateScore(int totalScore)
+{
+
+    return totalScore += 10;
 }
 
 void drawSquare()
@@ -147,28 +183,38 @@ void drawRectangle(int height, int width)
     }
     cout << "+\n";
 }
-void showWelcomeMsg()
-/********************************************************************************
- * Purpose: Shows the welcome message. This is the initial screen of the program.
- ********************************************************************************/
-
-{
-    cout << "===========================\n";
-    cout << "Welcome to Identify Shapes.\n";
-    cout << "===========================\n";
-}
 
 void showOptions()
-/******************************************************************************************
- * Purpose: Shows the options/questions. This is part of the initial screen of the program.
- ******************************************************************************************/
+/**************************************
+ * Purpose: Shows the options/questions.
+ **************************************/
 
 {
+
     cout << "a. Rectangle\n";
     cout << "b. Triangle\n";
     cout << "c. Square\n";
     cout << "d. None of the above\n";
-    cout << "====================\n";
+    cout << "==========================\n";
+}
+
+int showMenu(int totalScore)
+/*********************************************************************
+ * Purpose: Shows the menu. This is the initial screen of the program.
+ *********************************************************************/
+
+{
+    int menuChoice = 0;
+    cout << "===========================\n";
+    cout << "Welcome to Identify Shapes.\n";
+    cout << "===========================\n";
+    cout << "1. Play\n";
+    cout << "2. Final Score (" << totalScore << ")\n";
+    cout << "3. Exit\n";
+    cout << "===========================\n";
+    cout << "Choice: ";
+    cin >> menuChoice;
+    return menuChoice;
 }
 
 void pickQuestion(int questionNumber)
@@ -214,4 +260,9 @@ string correctAnswer(int questionNumber)
     }
 
     return answer;
+}
+
+void Clear()
+{
+    cout << "\x1B[2J\x1B[H";
 }

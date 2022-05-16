@@ -18,9 +18,10 @@ using namespace std;
 void drawHangMan();
 void drawInvertedHangMan();
 void drawWalkMan();
+void showMenu();
+void Clear();
 string pickQuestion(int questionNumber);
 string correctAnswer(int questionNumber);
-void showMenu();
 
 int main()
 {
@@ -36,7 +37,7 @@ int main()
     randomNum = 1 + (rand() % 4);
 
     rightAnswer = correctAnswer(randomNum); // get the correct answer to the question as per the random number
-
+    Clear();                                // clear screen
     showMenu();
 
     for (int i = 0; i < 3; i++)
@@ -195,4 +196,9 @@ void showMenu()
     cout << "Welcome to play hangman. This game is to check your spelling skill\n";
     cout << "==================================================================\n";
     drawHangMan();
+}
+
+void Clear()
+{
+    cout << "\x1B[2J\x1B[H";
 }
