@@ -1,10 +1,30 @@
+/**********************************************************************************************************************
+ *    CS-103 Integrated Studio I Assessment 1 - Question1: Display soccer player information using structure data type
+ *    @file Q1_soccer.cpp
+ *    @author Gilberto Gabon
+ *    @version 1 / 29-May-2022
+ *********************************************************************************************************************/
+
 #include <iostream>
 #include <string>
 #include <iomanip>
 
 using namespace std;
 
+// Function Prototypes
+void showPlayerInfo(int playerNum);
+
+int main()
+{
+    showPlayerInfo(1);
+    showPlayerInfo(2);
+}
+
 void showPlayerInfo(int playerNum)
+/*****************************************************************************
+ * Purpose: Shows the player's information. This utilises structure data type.
+ *****************************************************************************/
+
 {
 
     char positionChoice;
@@ -64,10 +84,4 @@ void showPlayerInfo(int playerNum)
         cout << "Speed (mph) : " << player.playerSpeed << endl;
         cout << "Position    : " << positions[position] << endl;
     }
-}
-
-int main()
-{
-    showPlayerInfo(1);
-    showPlayerInfo(2);
 }
