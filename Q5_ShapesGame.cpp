@@ -54,7 +54,7 @@ int main()
 }
 void showFinalScore(int totalScore)
 {
-    cout << "\nFinal score: " << totalScore << "\n";
+    cout << "\nFinal score: " << totalScore << "\n\n";
 }
 
 void playGame(int *ptrTotalScore)
@@ -73,6 +73,7 @@ void playGame(int *ptrTotalScore)
     cout << "What is this shape?\n\n";
     pickQuestion(randomNum);
     cout << "\n";
+
     showOptions();
 
     for (int i = 0; i < 3; i++)
@@ -93,7 +94,7 @@ void playGame(int *ptrTotalScore)
 
     if (answeredCorrectly)
     {
-        cout << "\nYour guess is correct\n";
+        cout << "\nYour guess is correct\n\n";
         *ptrTotalScore = calculateScore(*ptrTotalScore);
     }
     else
@@ -195,7 +196,7 @@ void showOptions()
     cout << "b. Triangle\n";
     cout << "c. Square\n";
     cout << "d. None of the above\n";
-    cout << "==========================\n";
+    cout << "=====================\n";
 }
 
 int showMenu(int totalScore)
