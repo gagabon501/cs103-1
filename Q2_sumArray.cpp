@@ -26,7 +26,6 @@ int main()
     {
         cout << "Enter item " << i + 1 << ": ";
         cin >> arrNum[i];
-        // cout << arrNum[i];
     }
 
     totalArr = sumArray(arrNum, numList);

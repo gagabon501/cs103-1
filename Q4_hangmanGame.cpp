@@ -36,13 +36,15 @@ int main()
     srand((unsigned)time(NULL)); // seed the rand() function with time() to ensure you do not get the same random number generated
     randomNum = 1 + (rand() % 4);
 
+    // Assign function to a variable
     rightAnswer = correctAnswer(randomNum); // get the correct answer to the question as per the random number
-    Clear();                                // clear screen
-    showMenu();
+
+    Clear();    // clear screen
+    showMenu(); // show the main menu
 
     for (int i = 0; i < 3; i++)
     {
-        cout << "\nQUESTION: " << pickQuestion(randomNum); // pickt the question based on the random number generated
+        cout << "\nQUESTION: " << pickQuestion(randomNum); // pick the question based on the random number generated
         cin >> answer;
 
         if (answer == rightAnswer)

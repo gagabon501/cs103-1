@@ -29,7 +29,7 @@ void showPlayerInfo(int playerNum)
 
     char positionChoice;
 
-    string positions[] = {"Goalkeeper", "Midfielder", "Striker", "Winger"};
+    string positions[] = {"Goalkeeper", "Midfielder", "Striker", "Winger", "Invalid"};
 
     enum Position
     {
@@ -37,6 +37,7 @@ void showPlayerInfo(int playerNum)
         midfielder,
         striker,
         winger,
+        invalid
     };
 
     struct Soccer
@@ -73,15 +74,18 @@ void showPlayerInfo(int playerNum)
         position = winger;
         break;
     default:
-        cout << "Invalid selection\n";
+        position = invalid;
+        cout << "Invalid position selection. Please press one of these choices: 'g','m','s','w'\n";
     }
 
-    if (position >= 0 && position <= 3)
+    // Player information will only be displayed if the user selects one of the acceptable positions (g, m, s, w)
+    if (position >= goalkeeper && position <= winger)
     {
-        cout << "=========================" << endl;
+        cout << "\n================================" << endl;
         cout << "Information for Player - " << playerNum << endl;
         cout << "Number      : " << player.playerNum << endl;
         cout << "Speed (mph) : " << player.playerSpeed << endl;
         cout << "Position    : " << positions[position] << endl;
+        cout << "================================" << endl;
     }
 }

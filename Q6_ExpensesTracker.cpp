@@ -73,6 +73,9 @@ int main()
         case 5:
             weeklyReport(dailyExpense, 3);
             break;
+        default:
+            cout << "Program exited\n";
+            menuChoice = 6; // Exit the loop
         }
     }
 

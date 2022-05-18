@@ -68,16 +68,30 @@ void addTwoMatrices(int matrixA[][3], int matrixB[][3], int length)
  * Purpose: Add two matrices passed as parameters and save it in another matrix (C). Multiply then contents of Matrix C by 3.
  ****************************************************************************************************************************/
 {
-    int matrixC[3][3];
+    int matrixC[3][3]; // Matrix to hold sum of the two matrices A&B
+
+    // Sum the two matrices A&B
     for (int i = 0; i < length; i++)
     {
 
         for (int j = 0; j < 3; j++)
         {
-            matrixC[i][j] = (matrixA[i][j] + matrixB[i][j]) * 3;
+            matrixC[i][j] = (matrixA[i][j] + matrixB[i][j]);
         }
     }
 
     cout << "\n";
-    displayMatrix(matrixC, 3, "     Matrix C");
+    displayMatrix(matrixC, 3, "     Matrix C"); // Display resultant matrix
+
+    // Multiply Matrix-C by 3
+    for (int i = 0; i < length; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            matrixC[i][j] *= 3;
+        }
+    }
+
+    cout << "\n";
+    displayMatrix(matrixC, 3, "   Matrix C x 3"); // Display the resultant matrix after multiplying by 3
 }
