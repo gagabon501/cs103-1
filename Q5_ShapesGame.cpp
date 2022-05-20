@@ -20,7 +20,7 @@ void drawTriangle();
 void drawRectangle(int height, int width);
 void showOptions();
 void pickQuestion(int questionNumber);
-void Clear();
+
 void playGame(int *ptrTotalScore);
 void showFinalScore(int totalScore);
 int calculateScore(int totalScore);
@@ -35,7 +35,6 @@ int main()
     int totalScore = 0;
     int *ptrTotalScore = &totalScore;
 
-    Clear(); // clear the screen
     while (menuChoice != 3)
     {
         menuChoice = showMenu(totalScore);
@@ -47,6 +46,8 @@ int main()
         case 2:
             showFinalScore(totalScore);
             break;
+        default:
+            cout << "Not a valid choice. Enter only 1,2, or 3";
         }
     }
 
@@ -99,7 +100,7 @@ void playGame(int *ptrTotalScore)
     }
     else
     {
-        cout << "\nYour guess is wrong\n";
+        cout << "\nYour guess is wrong. You reached the limit of tries. Play again \n\n";
     }
 }
 
@@ -206,7 +207,7 @@ int showMenu(int totalScore)
 
 {
     int menuChoice = 0;
-    cout << "===========================\n";
+    cout << "\n===========================\n";
     cout << "Welcome to Identify Shapes.\n";
     cout << "===========================\n";
     cout << "1. Play\n";
@@ -261,9 +262,4 @@ string correctAnswer(int questionNumber)
     }
 
     return answer;
-}
-
-void Clear()
-{
-    cout << "\x1B[2J\x1B[H";
 }

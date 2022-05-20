@@ -19,7 +19,7 @@ void drawHangMan();
 void drawInvertedHangMan();
 void drawWalkMan();
 void showMenu();
-void Clear();
+
 string pickQuestion(int questionNumber);
 string correctAnswer(int questionNumber);
 
@@ -39,8 +39,7 @@ int main()
     // Assign function to a variable
     rightAnswer = correctAnswer(randomNum); // get the correct answer to the question as per the random number
 
-    Clear();    // clear screen
-    showMenu(); // show the main menu
+        showMenu(); // show the main menu
 
     for (int i = 0; i < 3; i++)
     {
@@ -198,9 +197,4 @@ void showMenu()
     cout << "Welcome to play hangman. This game is to check your spelling skill\n";
     cout << "==================================================================\n";
     drawHangMan();
-}
-
-void Clear()
-{
-    cout << "\x1B[2J\x1B[H";
 }

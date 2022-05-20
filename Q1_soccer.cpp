@@ -27,7 +27,8 @@ void showPlayerInfo(int playerNum)
 
 {
 
-    char positionChoice;
+    char positionChoice = ' ';
+    bool doLoop = true;
 
     string positions[] = {"Goalkeeper", "Midfielder", "Striker", "Winger", "Invalid"};
 
@@ -56,26 +57,33 @@ void showPlayerInfo(int playerNum)
     cin >> player.playerNum;
     cout << "Enter speed (mph): ";
     cin >> player.playerSpeed;
-    cout << "Enter position (g=goalkeeper, m=midfielder, s=striker, w=winger): ";
-    cin >> positionChoice;
-
-    switch (positionChoice)
+    while (doLoop)
     {
-    case 'g':
-        position = goalkeeper;
-        break;
-    case 'm':
-        position = midfielder;
-        break;
-    case 's':
-        position = striker;
-        break;
-    case 'w':
-        position = winger;
-        break;
-    default:
-        position = invalid;
-        cout << "Invalid position selection. Please press one of these choices: 'g','m','s','w'\n";
+        cout << "Enter position (g=goalkeeper, m=midfielder, s=striker, w=winger): ";
+        cin >> positionChoice;
+
+        switch (positionChoice)
+        {
+        case 'g':
+            position = goalkeeper;
+            doLoop = false;
+            break;
+        case 'm':
+            position = midfielder;
+            doLoop = false;
+            break;
+        case 's':
+            position = striker;
+            doLoop = false;
+            break;
+        case 'w':
+            position = winger;
+            doLoop = false;
+            break;
+        default:
+            position = invalid;
+            cout << "Invalid position selection. Please press one of these choices: 'g','m','s','w'\n";
+        }
     }
 
     // Player information will only be displayed if the user selects one of the acceptable positions (g, m, s, w)

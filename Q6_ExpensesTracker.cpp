@@ -13,6 +13,8 @@
 #include <cmath>
 
 using namespace std;
+
+// Define structure data type for Expenses
 struct Expenses
 {
     string dateExpense;
@@ -33,15 +35,11 @@ struct Expenses
 };
 
 // Function Prototypes
-
 int showMenu();
 int totalExpenses(Expenses expenses[], int length);
-
-void Clear();
 void getExpenses(Expenses expenses[], int length);
 void viewDailyExpenses(Expenses expenses[], int length);
-void viewWeeklyExpenses(Expenses expenses[], int length);
-void dailyReport(Expenses expenses[], int length);
+void tabularReport(Expenses expenses[], int length, string title);
 void weeklyReport(Expenses expenses[], int length);
 
 int main()
@@ -49,33 +47,35 @@ int main()
 
     // variable definitions
     int menuChoice = 0;
-    Expenses dailyExpense[30];
-
-    Clear(); // clear the screen
+    Expenses dailyExpense[30]; // Defined here an array of Expenses for 30-days. However for purposes of this assignment, only three (3) days are utilized as a demo.
 
     while (menuChoice != 6)
     {
-        menuChoice = showMenu();
+        menuChoice = showMenu(); // Show menu choices and save choice into the menuChoice variable.
+
         switch (menuChoice)
         {
         case 1:
-            getExpenses(dailyExpense, 3);
+            getExpenses(dailyExpense, 3); // Get expenses for three (3) days only - this is just a demo for purposes of this assignment
             break;
         case 2:
             viewDailyExpenses(dailyExpense, 3);
             break;
         case 3:
-            viewWeeklyExpenses(dailyExpense, 3);
+            tabularReport(dailyExpense, 3, "Weekly Expenses");
             break;
         case 4:
-            dailyReport(dailyExpense, 3);
+            tabularReport(dailyExpense, 3, "Daily Report");
             break;
         case 5:
             weeklyReport(dailyExpense, 3);
             break;
+        case 6:
+            break;
+
         default:
-            cout << "Program exited\n";
-            menuChoice = 6; // Exit the loop
+            cout << "\nInvalid choice\n";
+            break;
         }
     }
 
@@ -83,9 +83,10 @@ int main()
 }
 
 void getExpenses(Expenses expenses[], int length)
+/**************************************************************************
+ * Purpose: This is the entry form for entering expenses for a certain day.
+ **************************************************************************/
 {
-
-    Clear();
 
     for (int i = 0; i < length; i++)
     {
@@ -106,28 +107,40 @@ void getExpenses(Expenses expenses[], int length)
 }
 
 void viewDailyExpenses(Expenses expenses[], int length)
+/*********************************************************************************
+ * Purpose: Displays the expenses for a certain day. User inputs the date to view.
+ *********************************************************************************/
 {
     float dailyExpenses = 0;
+    string day = "";
+    bool found = false;
 
-    Clear();
+    cout << "Enter day to view (DD-MM-YYYY): ";
+    cin >> day;
+    for (int i = 0; i < length; i++)
+    {
+        if (expenses[i].dateExpense == day)
+        {
+            found = true;
+            cout << "\nExpenses for: " << day << "\n";
+            cout << "=============================\n";
+            cout << "     Transport: " << expenses[i].transportCost << "\n";
+            cout << "          Meal: " << expenses[i].mealCost << "\n";
+            cout << " Entertainment: " << expenses[i].entertainCost << "\n";
+            cout << "        others: " << expenses[i].othersCost << "\n";
+        }
+    }
 
-    dailyExpenses = totalExpenses(expenses, length) / length;
-
-    cout << "Average Daily Expenses (Total Expenses/Number of Days): " << dailyExpenses;
-}
-
-void viewWeeklyExpenses(Expenses expenses[], int length)
-{
-    float weeklyExpenses = 0;
-
-    Clear();
-
-    weeklyExpenses = totalExpenses(expenses, length) / 7; // 7 days per week
-
-    cout << "Average Weekly Expenses (Total Expenses/7): " << weeklyExpenses;
+    if (!found)
+    {
+        cout << "\nNo record found for: " << day << "\n";
+    }
 }
 
 int totalExpenses(Expenses expenses[], int length)
+/***************************************************
+ * Purpose: Utility function to sum all the expenses
+ ***************************************************/
 {
     int totalExpenses = 0;
 
@@ -139,14 +152,17 @@ int totalExpenses(Expenses expenses[], int length)
     return totalExpenses;
 }
 
-void dailyReport(Expenses expenses[], int length)
+void tabularReport(Expenses expenses[], int length, string title)
+/**********************************************************************************************************************************************
+ * Purpose: Displays the report/expenses in tabular format. This function is called by either "Weekly Expenses" module or "Daily Report" module.
+ **********************************************************************************************************************************************/
 {
     int rowTotal = 0;
     int colTotal[4] = {0, 0, 0, 0};
     int overAllTotal = 0;
 
-    Clear();
-    cout << "\nDaily Report";
+    cout << "\n"
+         << title;
     cout << "\n==================================================================================================";
     cout << "\nDate"
          << "\t\t"
@@ -213,12 +229,15 @@ void dailyReport(Expenses expenses[], int length)
 }
 
 void weeklyReport(Expenses expenses[], int length)
+/*********************************************************************
+ * Purpose: Displays the Weekly Report in a tabular form
+ *********************************************************************/
+
 {
     int rowTotal = 0;
     int colTotal[4] = {0, 0, 0, 0};
     int overAllTotal = 0;
 
-    Clear();
     cout << "\nWeekly Report";
     cout << "\n==================================================================================================";
     cout << "\nWeek#"
@@ -267,6 +286,7 @@ void weeklyReport(Expenses expenses[], int length)
 }
 
 int showMenu()
+
 /*********************************************************************
  * Purpose: Shows the menu. This is the initial screen of the program.
  *********************************************************************/
@@ -287,9 +307,4 @@ int showMenu()
     cin >> menuChoice;
 
     return menuChoice;
-}
-
-void Clear()
-{
-    cout << "\x1B[2J\x1B[H";
 }
