@@ -11,6 +11,21 @@
 
 using namespace std;
 
+struct Soccer
+{
+    int playerNum;
+    float playerSpeed;
+};
+
+enum Position
+{
+    goalkeeper,
+    midfielder,
+    striker,
+    winger,
+    invalid
+};
+
 // Function Prototypes
 void showPlayerInfo(int playerNum);
 
@@ -31,21 +46,6 @@ void showPlayerInfo(int playerNum)
     bool doLoop = true;
 
     string positions[] = {"Goalkeeper", "Midfielder", "Striker", "Winger", "Invalid"};
-
-    enum Position
-    {
-        goalkeeper,
-        midfielder,
-        striker,
-        winger,
-        invalid
-    };
-
-    struct Soccer
-    {
-        int playerNum;
-        float playerSpeed;
-    };
 
     Soccer player;
 

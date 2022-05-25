@@ -13,23 +13,54 @@ using namespace std;
 
 // Function Prototypes
 void displayMatrix(int matrix[][3], int length, string title);
-void addTwoMatrices(int matrixA[][3], int matrixB[][3], int length);
+void addTwoMatrices(int matrixA[][3], int matrixB[][3], int matrixC[][3], int length);
+void multiplyMatrixCbyThree(int matrixC[][3], int length);
 
 int main()
 {
-    int matrixA[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-    int matrixB[3][3] = {{5, 6, 9}, {6, 4, 7}, {8, 2, 1}};
+    // int matrixA[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    // int matrixB[3][3] = {{5, 6, 9}, {6, 4, 7}, {8, 2, 1}};
+    int matrixA[3][3];
+    int matrixB[3][3];
+    int matrixC[3][3]; // Holds the sum of Matrix-A and Matrix-B
 
     cout << "This program will add two matrices (A & B) then store the result into Matrix C. Matrix C is then multiplied by 3.\n";
     cout << "=================================================================================================================\n\n";
 
-    displayMatrix(matrixA, 3, "     Matrix A");
+    // Get inputs for Matrix-A
+    cout << "Enter values for Matrix-A\n";
+    cout << "=========================\n";
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            cout << "value for element [" << i << "][" << j << "] = ";
+            cin >> matrixA[i][j];
+        }
+    }
 
     cout << "\n";
 
+    // Get inputs for Matrix-B
+    cout << "Enter values for Matrix-B\n";
+    cout << "=========================\n";
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            cout << "value for element [" << i << "][" << j << "] = ";
+            cin >> matrixB[i][j];
+        }
+    }
+
+    // Display contents of Matrix-A, Matrix-B, and the resultant Matrix-C
+    cout << "\n";
+    displayMatrix(matrixA, 3, "     Matrix A");
+    cout << "\n";
     displayMatrix(matrixB, 3, "     Matrix B");
 
-    addTwoMatrices(matrixA, matrixB, 3);
+    addTwoMatrices(matrixA, matrixB, matrixC, 3);
+    multiplyMatrixCbyThree(matrixC, 3);
 
     return 0;
 }
@@ -63,12 +94,12 @@ void displayMatrix(int matrix[][3], int length, string title)
     }
 }
 
-void addTwoMatrices(int matrixA[][3], int matrixB[][3], int length)
+void addTwoMatrices(int matrixA[][3], int matrixB[][3], int matrixC[][3], int length)
 /****************************************************************************************************************************
  * Purpose: Add two matrices passed as parameters and save it in another matrix (C). Multiply then contents of Matrix C by 3.
  ****************************************************************************************************************************/
 {
-    int matrixC[3][3]; // Matrix to hold sum of the two matrices A&B
+    // int matrixC[3][3]; // Matrix to hold sum of the two matrices A&B
 
     // Sum the two matrices A&B
     for (int i = 0; i < length; i++)
@@ -82,7 +113,10 @@ void addTwoMatrices(int matrixA[][3], int matrixB[][3], int length)
 
     cout << "\n";
     displayMatrix(matrixC, 3, "     Matrix C"); // Display resultant matrix
+}
 
+void multiplyMatrixCbyThree(int matrixC[][3], int length)
+{
     // Multiply Matrix-C by 3
     for (int i = 0; i < length; i++)
     {
