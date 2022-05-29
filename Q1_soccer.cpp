@@ -23,6 +23,7 @@ enum Position
     midfielder,
     striker,
     winger,
+    defender,
     invalid
 };
 
@@ -45,7 +46,7 @@ void showPlayerInfo(int playerNum)
     char positionChoice = ' ';
     bool doLoop = true;
 
-    string positions[] = {"Goalkeeper", "Midfielder", "Striker", "Winger", "Invalid"};
+    string positions[] = {"Goalkeeper", "Midfielder", "Striker", "Winger", "Defender", "Invalid"};
 
     Soccer player;
 
@@ -59,7 +60,7 @@ void showPlayerInfo(int playerNum)
     cin >> player.playerSpeed;
     while (doLoop)
     {
-        cout << "Enter position (g=goalkeeper, m=midfielder, s=striker, w=winger): ";
+        cout << "Enter position (g=goalkeeper, m=midfielder, s=striker, w=winger, d=defender): ";
         cin >> positionChoice;
 
         switch (positionChoice)
@@ -80,14 +81,19 @@ void showPlayerInfo(int playerNum)
             position = winger;
             doLoop = false;
             break;
+        case 'd':
+            position = defender;
+            doLoop = false;
+            break;
+
         default:
             position = invalid;
-            cout << "Invalid position selection. Please press one of these choices: 'g','m','s','w'\n";
+            cout << "Invalid position selection. Please press one of these choices: 'g','m','s','w','d'\n";
         }
     }
 
     // Player information will only be displayed if the user selects one of the acceptable positions (g, m, s, w)
-    if (position >= goalkeeper && position <= winger)
+    if (position >= goalkeeper && position <= defender)
     {
         cout << "\n================================" << endl;
         cout << "Information for Player - " << playerNum << endl;

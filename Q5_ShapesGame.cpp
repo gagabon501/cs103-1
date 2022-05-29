@@ -187,9 +187,9 @@ void drawRectangle(int height, int width)
 }
 
 void showOptions()
-/**************************************
- * Purpose: Shows the options/questions.
- **************************************/
+/********************************************
+ * Purpose: Shows the choices for the answer.
+ ********************************************/
 
 {
 

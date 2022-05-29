@@ -111,7 +111,6 @@ void viewDailyExpenses(Expenses expenses[], int length)
  * Purpose: Displays the expenses for a certain day. User inputs the date to view.
  *********************************************************************************/
 {
-    float dailyExpenses = 0;
     string day = "";
     bool found = false;
 
@@ -128,6 +127,9 @@ void viewDailyExpenses(Expenses expenses[], int length)
             cout << "          Meal: " << expenses[i].mealCost << "\n";
             cout << " Entertainment: " << expenses[i].entertainCost << "\n";
             cout << "        others: " << expenses[i].othersCost << "\n";
+            cout << "=============================\n";
+            cout << "Total Expenses: " << expenses[i].transportCost + expenses[i].mealCost + expenses[i].entertainCost + expenses[i].othersCost << "\n";
+            cout << "=============================\n";
         }
     }
 

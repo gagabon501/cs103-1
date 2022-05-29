@@ -24,8 +24,14 @@ int main()
 
     for (int i = 0; i < numList; i++)
     {
-        cout << "Enter item " << i + 1 << ": ";
+        cout << "Enter value for item " << i + 1 << ": ";
         cin >> arrNum[i];
+        while (arrNum[i] < 0)
+        {
+            cout << "Invalid entry. Enter only non-negative value.\n";
+            cout << "Enter value for item " << i + 1 << ": ";
+            cin >> arrNum[i];
+        }
     }
 
     totalArr = sumArray(arrNum, numList);
